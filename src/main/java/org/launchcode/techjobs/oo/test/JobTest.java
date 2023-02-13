@@ -44,4 +44,36 @@ public class JobTest {
         Job anotherJob = new Job("Name", new Employer("Employer"), new Location("Location"), new PositionType("Position"), new CoreCompetency("Competency"));
         assertFalse(aJob.equals(anotherJob));
     }
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine(){
+        Job aJob = new Job("Name", new Employer("Employer"), new Location("Location"), new PositionType("Position"), new CoreCompetency("Competency"));
+        String str = aJob.toString();
+        assertEquals(str.charAt(0), '\n');
+        assertEquals(str.charAt(str.length()-1), '\n');
+    }
+    @Test
+    public void testToStringContainsCorrectLabelsAndData(){
+        Job aJob = new Job("Name", new Employer("Employer"), new Location("Location"), new PositionType("Position"), new CoreCompetency("Competency"));
+        String expected = "\n" +
+                "ID: " + aJob.getId() + "\n" +
+                "Name: " + aJob.getName() + "\n" +
+                "Employer: " + aJob.getEmployer() + "\n" +
+                "Location: " + aJob.getLocation() + "\n" +
+                "Position Type: " + aJob.getPositionType() + "\n" +
+                "Core Competency: " + aJob.getCoreCompetency() + "\n";
+        assertEquals(aJob.toString(), expected);
+    }
+    @Test
+    public void testToStringHandlesEmptyField(){
+        Job aJob = new Job("Name", new Employer("Employer"), new Location("Location"), new PositionType(""), new CoreCompetency(""));
+        String expected = "\n" +
+                "ID: " + aJob.getId() + "\n" +
+                "Name: " + aJob.getName() + "\n" +
+                "Employer: " + aJob.getEmployer() + "\n" +
+                "Location: " + aJob.getLocation() + "\n" +
+                "Position Type: " + "Data not available" + "\n" +
+                "Core Competency: " + "Data not available" + "\n";
+        assertEquals(aJob.toString(), expected);
+    }
 }

@@ -61,6 +61,33 @@ public class Job {
         this.name = name;
     }
 
+    @Override
+    public String toString(){
+        String dataNotAvailable = "Data not available";
+        if(name == ""){
+            name = dataNotAvailable;
+        }
+        if(employer.getValue() == ""){
+         employer.setValue(dataNotAvailable);
+        }
+        if(location.getValue() == ""){
+            location.setValue(dataNotAvailable);
+        }
+        if(positionType.getValue() == ""){
+            positionType.setValue(dataNotAvailable);
+        }
+        if(coreCompetency.getValue() == ""){
+            coreCompetency.setValue(dataNotAvailable);
+        }
+        return "\n" +
+                "ID: " + this.getId() + "\n" +
+                "Name: " + this.getName() + "\n" +
+                "Employer: " + this.getEmployer() + "\n" +
+                "Location: " + this.getLocation() + "\n" +
+                "Position Type: " + this.getPositionType() + "\n" +
+                "Core Competency: " + this.getCoreCompetency() + "\n";
+    }
+
     public Employer getEmployer() {
         return employer;
     }
